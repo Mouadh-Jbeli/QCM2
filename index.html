@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QCM Fiches 3 et 4 : SI/ET/OU et fonctions conditionnelles</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1d2330;--muted:#5d6678;--line:#d9dde5;--accent:#1f4e78;--accent-t:#fff;--ok:#1b7a3d;--ok-bg:#e3f4e8;--ko:#b3261e;--ko-bg:#fbe7e5;--code:#eef1f6;--tag3:#7a4a00;--tag3-bg:#fdeccf;--tag4:#1f4e78;--tag4-bg:#dfeaf6;--tagm:#5b2a86;--tagm-bg:#eee1f8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151b;--card:#1b2029;--text:#e8ebf1;--muted:#9aa3b5;--line:#2c3340;--accent:#6aa9e0;--accent-t:#0d1117;--ok:#6fd08c;--ok-bg:#16301f;--ko:#ff8a80;--ko-bg:#3a1c1a;--code:#252c38;--tag3:#f5c77a;--tag3-bg:#3a2d12;--tag4:#9cc7ef;--tag4-bg:#1b2e44;--tagm:#d3b3f0;--tagm-bg:#2f2040;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151b;--card:#1b2029;--text:#e8ebf1;--muted:#9aa3b5;--line:#2c3340;--accent:#6aa9e0;--accent-t:#0d1117;--ok:#6fd08c;--ok-bg:#16301f;--ko:#ff8a80;--ko-bg:#3a1c1a;--code:#252c38;--tag3:#f5c77a;--tag3-bg:#3a2d12;--tag4:#9cc7ef;--tag4-bg:#1b2e44;--tagm:#d3b3f0;--tagm-bg:#2f2040;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
+.wrap{max-width:780px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:8px 0 4px}
+.sub{color:var(--muted);margin:0 0 14px;font-size:14px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:5;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.track{flex:1;height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .2s}
+details.data{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0}
+details.data summary{cursor:pointer;font-weight:bold;font-size:14px}
+.tw{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:460px}
+th,td{border:1px solid var(--line);padding:5px 8px;text-align:left}
+th{background:var(--code)}
+td.n,th.n{text-align:right}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.q.ok{border-color:var(--ok)}.q.ko{border-color:var(--ko)}
+.tag{display:inline-block;font-size:11px;font-weight:bold;padding:2px 8px;border-radius:999px;margin-bottom:6px}
+.tag.t3{background:var(--tag3-bg);color:var(--tag3)}
+.tag.t4{background:var(--tag4-bg);color:var(--tag4)}
+.tag.tm{background:var(--tagm-bg);color:var(--tagm)}
+.qt{font-weight:bold;margin:0 0 8px}
+pre.f{background:var(--code);padding:8px 10px;border-radius:8px;margin:0 0 10px;font-family:Consolas,Menlo,monospace;font-size:13px;overflow-x:auto;white-space:pre}
+label{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-radius:8px;margin:6px 0;cursor:pointer}
+label input{margin-top:3px}
+label.code span.t{font-family:Consolas,Menlo,monospace;font-size:13px;overflow-x:auto;white-space:pre}
+label.good{background:var(--ok-bg);border-color:var(--ok)}
+label.bad{background:var(--ko-bg);border-color:var(--ko)}
+.exp{margin-top:8px;padding:8px 10px;border-radius:8px;font-size:14px}
+.exp.ok{background:var(--ok-bg);color:var(--ok)}.exp.ko{background:var(--ko-bg);color:var(--ko)}
+.exp b{color:var(--text)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+button{font:inherit;padding:12px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-t);cursor:pointer;font-weight:bold}
+button.alt{background:transparent;color:var(--accent)}
+#res{display:none;background:var(--card);border:2px solid var(--accent);border-radius:12px;padding:16px;margin:14px 0;text-align:center}
+#res .big{font-size:34px;font-weight:bold;margin:4px 0}
+#res .det{font-size:14px;color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>QCM de synthèse : Fiches n°3 et n°4</h1>
+<p class="sub">Fiche 3 : SI, ET, OU. Fiche 4 : SOMME.SI, SOMME.SI.ENS, NB.SI, NB.SI.ENS, MOYENNE.SI, MOYENNE.SI.ENS. Une seule réponse par question. Clique sur « Valider » à la fin pour voir ta note et la correction. L’ordre des réponses change à chaque tentative.</p>
+
+<details class="data" open>
+<summary>Tableau TechDistrib (A1:E11), utilisé dans les questions de la fiche 4</summary>
+<div class="tw">
+<table>
+<thead><tr><th>Ligne</th><th>A : Commercial</th><th>B : Région</th><th>C : Catégorie</th><th class="n">D : Montant (TND)</th><th>E : Statut</th></tr></thead>
+<tbody>
+<tr><td>2</td><td>Ben Salah Nour</td><td>Tunis</td><td>Ordinateurs</td><td class="n">8 200</td><td>Livré</td></tr>
+<tr><td>3</td><td>Trabelsi Yassine</td><td>Sfax</td><td>Périphériques</td><td class="n">3 100</td><td>Livré</td></tr>
+<tr><td>4</td><td>Gharbi Sana</td><td>Tunis</td><td>Périphériques</td><td class="n">1 500</td><td>En attente</td></tr>
+<tr><td>5</td><td>Chaabane Malek</td><td>Sousse</td><td>Ordinateurs</td><td class="n">6 400</td><td>Livré</td></tr>
+<tr><td>6</td><td>Jendoubi Amira</td><td>Tunis</td><td>Ordinateurs</td><td class="n">9 800</td><td>Livré</td></tr>
+<tr><td>7</td><td>Ferjani Omar</td><td>Sfax</td><td>Ordinateurs</td><td class="n">4 700</td><td>En attente</td></tr>
+<tr><td>8</td><td>Bouazizi Rim</td><td>Sousse</td><td>Périphériques</td><td class="n">2 200</td><td>Livré</td></tr>
+<tr><td>9</td><td>Khelifi Mehdi</td><td>Tunis</td><td>Périphériques</td><td class="n">5 300</td><td>Livré</td></tr>
+<tr><td>10</td><td>Sassi Nadia</td><td>Sfax</td><td>Ordinateurs</td><td class="n">7 100</td><td>Livré</td></tr>
+<tr><td>11</td><td>Rekik Bilel</td><td>Sousse</td><td>Ordinateurs</td><td class="n">3 900</td><td>En attente</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+
+<div class="bar"><span id="cnt">0/20 répondues</span><div class="track"><div class="fill" id="fill"></div></div></div>
+<div id="res"></div>
+<div id="qs"></div>
+<div class="btns"><button id="go">Valider mes réponses</button><button class="alt" id="reset">Recommencer</button></div>
+</div>
+<script>
+/* Chaque question : t = fiche (3, 4 ou M pour mixte), q = énoncé, f = formule (optionnel),
+   o = options (la PREMIÈRE est la bonne, l'ordre est mélangé à l'affichage), c = 1 si options en code, e = explication */
+var Q=[
+/* ---------- FICHE 3 ---------- */
+{t:"3",q:"Que renvoie cette formule si B2 = 12 et C2 = 9 ?",f:`=SI(ET(B2>=10;C2>=8);"Admis";"Refusé")`,o:["Admis","Refusé","VRAI","FAUX"],e:"12 ≥ 10 est vrai et 9 ≥ 8 est vrai : ET est vrai, donc « Admis »."},
+{t:"3",q:"Que renvoie cette formule si B2 = 7 et C2 = 9 ?",f:`=SI(OU(B2>=10;C2>=8);"Admis";"Refusé")`,o:["Admis","Refusé","VRAI","Erreur"],e:"7 ≥ 10 est faux, mais 9 ≥ 8 est vrai : une seule condition vraie suffit avec OU, donc « Admis »."},
+{t:"3",q:"Quelle condition correspond à : « L’étudiant est admis s’il a une moyenne >= 10 ET une assiduité >= 8 » ?",o:["ET(B2>=10;C2>=8)","OU(B2>=10;C2>=8)","SI(B2>=10;C2>=8)","OU(B2<10;C2<8)"],c:1,e:"Les deux conditions doivent être réunies : ET(B2>=10;C2>=8)."},
+{t:"3",q:"Que renvoie cette formule si B2 = 14, C2 = 6 et D2 = \"Oui\" ?",f:`=SI(ET(B2>=10;OU(C2>=8;D2="Oui"));"Validé";"Non validé")`,o:["Validé","Non validé","VRAI","#NOM?"],e:"14 ≥ 10 est vrai. Dans le OU : 6 ≥ 8 est faux, mais D2=\"Oui\" est vrai, donc le OU est vrai. ET(vrai;vrai) donne « Validé »."},
+{t:"3",q:"Que renvoie cette formule si B2 = 9, C2 = 10 et D2 = \"Oui\" ?",f:`=SI(ET(B2>=10;OU(C2>=8;D2="Oui"));"Validé";"Non validé")`,o:["Non validé","Validé","VRAI","Erreur"],e:"9 ≥ 10 est faux : le ET est faux quoi qu’il y ait dans le OU. Résultat « Non validé »."},
+{t:"3",q:"Si B2 = 8, C2 = 9 et D2 = \"Oui\", laquelle de ces formules renvoie VRAI ?",f:`A. =ET(B2>=10;OU(C2>=8;D2="Oui"))\nB. =OU(B2>=10;ET(C2>=8;D2="Oui"))`,o:["B seulement","A seulement","Les deux","Aucune"],e:"A : 8 ≥ 10 est faux, donc ET est faux. B : ET(C2>=8;D2=\"Oui\") est vrai (9 ≥ 8 et \"Oui\"), donc OU est vrai. Seule B renvoie VRAI."},
+{t:"3",q:"Que renvoie cette formule si B2 = 9, C2 = 6 et D2 = \"Exception\" ?",f:`=SI(OU(ET(B2>=10;C2>=8);D2="Exception");"Accepté";"Refusé")`,o:["Accepté","Refusé","VRAI","Erreur"],e:"Le ET est faux (9 < 10), mais D2=\"Exception\" est vrai : le OU est vrai, donc « Accepté »."},
+/* ---------- FICHE 4 ---------- */
+{t:"4",q:"Quelle est la syntaxe correcte de SOMME.SI.ENS ?",o:["=SOMME.SI.ENS(plage_somme ; plage_critère1 ; critère1 ; ...)","=SOMME.SI.ENS(plage_critère1 ; critère1 ; plage_somme ; ...)","=SOMME.SI.ENS(critère1 ; plage_critère1 ; plage_somme ; ...)","=SOMME.SI.ENS(plage_critère1 ; plage_somme ; critère1 ; ...)"],c:1,e:"Dans SOMME.SI.ENS, la plage à sommer est le TOUT PREMIER argument. C’est l’inverse de SOMME.SI."},
+{t:"4",q:"Dans SOMME.SI(plage ; critère ; [plage_somme]), que se passe-t-il si plage_somme est omise ?",o:["Excel additionne la plage elle-même (celle du critère)","Excel renvoie #VALEUR!","Excel renvoie 0","Excel compte les cellules qui respectent le critère"],e:"plage_somme est facultatif : si elle est omise, c’est la plage testée qui est additionnée."},
+{t:"4",q:"Quel est le résultat de cette formule sur le tableau TechDistrib ?",f:`=SOMME.SI(B2:B11;"Tunis";D2:D11)`,o:["24 800","18 000","8 200","32 400"],e:"Tunis : 8 200 + 1 500 + 9 800 + 5 300 = 24 800 TND."},
+{t:"4",q:"Quel est le résultat de cette formule sur le tableau TechDistrib ?",f:`=SOMME.SI.ENS(D2:D11;B2:B11;"Tunis";C2:C11;"Ordinateurs")`,o:["18 000","24 800","8 200","27 000"],e:"Tunis ET Ordinateurs : Ben Salah Nour (8 200) + Jendoubi Amira (9 800) = 18 000 TND."},
+{t:"4",q:"Combien de ventes dépassent 5 000 TND ?",f:`=NB.SI(D2:D11;">5000")`,o:["5","4","6","10"],e:"Les montants > 5 000 sont : 8 200, 6 400, 9 800, 5 300 et 7 100, soit 5 ventes."},
+{t:"4",q:"Quel est le résultat de cette formule sur le tableau TechDistrib ?",f:`=NB.SI.ENS(B2:B11;"Sfax";E2:E11;"Livré")`,o:["2","3","1","4"],e:"Sfax compte 3 ventes, mais Ferjani est « En attente ». Seules Trabelsi et Sassi sont « Livré » : 2 ventes."},
+{t:"4",q:"Quel est le résultat de cette formule sur le tableau TechDistrib ?",f:`=MOYENNE.SI(C2:C11;"Périphériques";D2:D11)`,o:["3 025","12 100","3 100","4 300"],e:"(3 100 + 1 500 + 2 200 + 5 300) / 4 = 12 100 / 4 = 3 025 TND. Attention : 12 100 est la somme, pas la moyenne."},
+{t:"4",q:"Quel est le résultat de cette formule sur le tableau TechDistrib ?",f:`=MOYENNE.SI.ENS(D2:D11;B2:B11;"Sousse";E2:E11;"Livré")`,o:["4 300","4 166,67","6 400","8 600"],e:"Sousse ET Livré : Chaabane (6 400) et Bouazizi (2 200). Moyenne = (6 400 + 2 200) / 2 = 4 300 TND. Rekik est « En attente »."},
+{t:"4",q:"Que renvoie cette formule sur le tableau TechDistrib ?",f:`=MOYENNE.SI.ENS(D2:D11;B2:B11;"Sousse";C2:C11;"Périphériques";E2:E11;"En attente")`,o:["#DIV/0!","0","#VALEUR!","2 200"],e:"Aucune ligne ne remplit les trois conditions. Contrairement à SOMME.SI.ENS ou NB.SI.ENS qui renvoient 0, MOYENNE.SI.ENS divise par 0 et renvoie #DIV/0!."},
+{t:"4",q:"Quelle formule est correcte pour compter les montants strictement supérieurs à 5 000 ?",o:[`=NB.SI(D2:D11;">5000")`,`=NB.SI(D2:D11;>5000)`,`=NB.SI(">5000";D2:D11)`,`=NB.SI.ENS(D2:D11>5000)`],c:1,e:"Un critère qui contient un opérateur de comparaison s’écrit entre guillemets, après la plage : NB.SI(plage;\">5000\")."},
+{t:"4",q:"Une formule SOMME.SI.ENS renvoie #VALEUR!. Quelle est la cause la plus probable ?",o:["Les plages (somme et critères) n’ont pas la même taille, par exemple D2:D11 et B2:B10","Aucune ligne ne respecte les critères","Le critère texte est écrit en majuscules","Il y a plus de deux critères"],e:"Avec les fonctions « .ENS », toutes les plages doivent avoir exactement la même taille, sinon Excel renvoie #VALEUR!."},
+/* ---------- MIXTE ---------- */
+{t:"M",q:"Que renvoie cette formule sur le tableau TechDistrib ?",f:`=SI(SOMME.SI(B2:B11;"Tunis";D2:D11)>20000;"Objectif atteint";"Non atteint")`,o:["Objectif atteint","Non atteint","24 800","#VALEUR!"],e:"SOMME.SI donne 24 800, et 24 800 > 20 000 est vrai : le SI renvoie « Objectif atteint » (et non le nombre, car il renvoie le texte prévu)."},
+{t:"M",q:"On veut compter les ventes de la région Tunis OU de la région Sfax. Quelle formule est correcte ?",o:[`=NB.SI(B2:B11;"Tunis")+NB.SI(B2:B11;"Sfax")`,`=NB.SI.ENS(B2:B11;"Tunis";B2:B11;"Sfax")`,`=NB.SI(B2:B11;OU("Tunis";"Sfax"))`,`=NB.SI.ENS(B2:B11;"Tunis OU Sfax")`],c:1,e:"Les fonctions « .ENS » combinent les critères avec un ET implicite : une ligne ne peut pas être Tunis ET Sfax, donc NB.SI.ENS donnerait 0. Pour un OU, on additionne deux NB.SI (4 + 3 = 7) ou on utilise SOMMEPROD."}
+];
+var L="ABCD";
+var N=Q.length;
+var TAGS={"3":["t3","Fiche 3 · SI / ET / OU"],"4":["t4","Fiche 4 · Fonctions conditionnelles"],"M":["tm","Fiches 3 + 4"]};
+var box=document.getElementById("qs");
+var ANS=[];
+
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+function build(){
+  box.innerHTML="";ANS=[];
+  Q.forEach(function(x,i){
+    var order=shuffle(x.o.map(function(_,k){return k;}));
+    ANS.push(order.indexOf(0));
+    var d=document.createElement("div");d.className="q";d.id="q"+i;
+    var tg=document.createElement("span");tg.className="tag "+TAGS[x.t][0];tg.textContent=TAGS[x.t][1];d.appendChild(tg);
+    var p=document.createElement("p");p.className="qt";p.textContent=(i+1)+". "+x.q;d.appendChild(p);
+    if(x.f){var pr=document.createElement("pre");pr.className="f";pr.textContent=x.f;d.appendChild(pr);}
+    order.forEach(function(k,j){
+      var lb=document.createElement("label");if(x.c)lb.className="code";
+      var r=document.createElement("input");r.type="radio";r.name="r"+i;r.value=j;r.addEventListener("change",prog);
+      var s=document.createElement("span");s.className="t";s.textContent=L[j]+". "+x.o[k];
+      lb.appendChild(r);lb.appendChild(s);d.appendChild(lb);
+    });
+    box.appendChild(d);
+  });
+  prog();
+}
+function got(i){var r=document.querySelector('input[name="r'+i+'"]:checked');return r?+r.value:-1;}
+function prog(){var n=0;Q.forEach(function(_,i){if(got(i)>=0)n++;});
+  document.getElementById("cnt").textContent=n+"/"+N+" répondues";
+  document.getElementById("fill").style.width=(n/N*100)+"%";}
+
+document.getElementById("go").addEventListener("click",function(){
+  var sc=0,miss=0,by={"3":[0,0],"4":[0,0],"M":[0,0]};
+  Q.forEach(function(x,i){
+    var d=document.getElementById("q"+i),g=got(i),a=ANS[i],ok=g===a;
+    by[x.t][1]++;
+    if(g<0)miss++;
+    if(ok){sc++;by[x.t][0]++;}
+    d.className="q "+(ok?"ok":"ko");
+    var old=d.querySelector(".exp");if(old)old.remove();
+    d.querySelectorAll("label").forEach(function(lb,j){
+      lb.classList.remove("good","bad");
+      var inp=lb.querySelector("input");inp.disabled=true;
+      if(j===a)lb.classList.add("good");
+      else if(j===g)lb.classList.add("bad");
+    });
+    var e=document.createElement("div");e.className="exp "+(ok?"ok":"ko");
+    var head=ok?"Correct. ":(g<0?"Sans réponse. Bonne réponse : "+L[a]+". ":"Faux. Bonne réponse : "+L[a]+". ");
+    var b=document.createElement("b");b.textContent=head;e.appendChild(b);
+    e.appendChild(document.createTextNode(x.e));
+    d.appendChild(e);
+  });
+  var r=document.getElementById("res");r.style.display="block";
+  var pct=Math.round(sc/N*100);
+  var msg=sc>=17?"Excellent, tu maîtrises les deux fiches.":sc>=13?"Bien, relis les questions ratées.":sc>=9?"Moyen, revois les points faibles ci-dessous.":"À retravailler : reprends les deux fiches pas à pas.";
+  r.innerHTML="";
+  var a1=document.createElement("div");a1.textContent="Ton résultat final";
+  var bg=document.createElement("div");bg.className="big";bg.textContent=sc+" / "+N+" ("+pct+" %)";
+  var m=document.createElement("div");m.textContent=msg+(miss?" ("+miss+" sans réponse)":"");
+  var dt=document.createElement("div");dt.className="det";
+  dt.textContent="Fiche 3 : "+by["3"][0]+"/"+by["3"][1]+"  ·  Fiche 4 : "+by["4"][0]+"/"+by["4"][1]+"  ·  Mixte : "+by["M"][0]+"/"+by["M"][1];
+  r.appendChild(a1);r.appendChild(bg);r.appendChild(m);r.appendChild(dt);
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+document.getElementById("reset").addEventListener("click",function(){
+  build();
+  document.getElementById("res").style.display="none";
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+build();
+</script>
+</body>
+</html>
